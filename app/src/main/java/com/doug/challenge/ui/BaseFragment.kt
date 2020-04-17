@@ -1,5 +1,6 @@
 package com.doug.challenge.ui
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.doug.challenge.ui.dialogs.ErrorDialog
@@ -26,4 +27,12 @@ abstract class BaseFragment : Fragment() {
 
     private fun isReadyToShowDialog(activity: FragmentActivity) =
         !activity.isFinishing && !activity.isChangingConfigurations
+
+    protected fun hideActionBar() {
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+    }
+
+    protected fun showActionBar() {
+        (activity as? AppCompatActivity)?.supportActionBar?.show()
+    }
 }

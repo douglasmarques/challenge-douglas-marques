@@ -31,6 +31,18 @@ android {
       }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -48,6 +60,7 @@ dependencies {
     def junitVersion = "2.1.0-beta01"
     def coroutinesVersion = "1.2.2"
     def lifecycleVersion = "2.2.0"
+    def navigationVersion = "2.2.0-rc03"
     def koinVersion = "2.0.1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -86,6 +99,10 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
     implementation "org.koin:koin-androidx-scope:$koinVersion"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // Test libraries
     testImplementation "junit:junit:$junitVersion"
