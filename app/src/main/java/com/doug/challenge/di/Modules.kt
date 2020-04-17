@@ -1,10 +1,13 @@
 package com.doug.challenge.di
 
 import com.doug.challenge.network.Api
+import com.doug.challenge.repository.LoginRepository
+import com.doug.challenge.ui.login.LoginViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -12,6 +15,18 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 /**
  * Koin modules responsible for creating the dependencies and inject where necessary.
  */
+
+val viewModelModule = module {
+    viewModel {
+        LoginViewModel(get())
+    }
+}
+
+val repositoryModule = module {
+    single {
+        LoginRepository(get())
+    }
+}
 
 val apiModule = module {
     fun provideApi(retrofit: Retrofit): Api {

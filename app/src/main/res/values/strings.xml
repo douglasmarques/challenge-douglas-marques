@@ -5,4 +5,8 @@
     <string name="dialog_error_title">Error</string>
     <string name="dialog_positive_button_label">OK</string>
     <string name="dialog_error_generic">Sorry something went wrong please try again</string>
+
+    <!--Login -->
+    <string name="enter_otp_text">Please enter your OTP.</string>
+    <string name="invalid_otp_error">The OTP is invalid, please check if it is correct.</string>
 </resources>
