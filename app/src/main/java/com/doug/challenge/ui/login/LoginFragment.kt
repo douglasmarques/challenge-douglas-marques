@@ -83,6 +83,7 @@ class LoginFragment : BaseFragment() {
             // show the error message
             if (errorResource > 0) {
                 showErrorDialog(message = getString(errorResource))
+                passwordOtpView.text = null
                 viewModel.errorObserver.value = 0
             }
         })
@@ -96,6 +97,7 @@ class LoginFragment : BaseFragment() {
             directions?.let {
                 findNavController().navigate(directions)
                 viewModel.navigationObserver.value = null
+                passwordOtpView.text = null
             }
         })
     }

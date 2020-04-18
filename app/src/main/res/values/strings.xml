@@ -8,7 +8,8 @@
 
     <!--Login -->
     <string name="enter_otp_text">Please enter your OTP</string>
-    <string name="invalid_otp_error">The OTP is invalid, please check if the information is correct.</string>
+    <string name="invalid_otp_error">Incorrect OTP, please try again.</string>
+    <string name="invalid_size_otp_error">Please enter a valid OTP, it should have 4 numbers.</string>
     <string name="submit_content_description">Submit</string>
 
     <!--Reward -->

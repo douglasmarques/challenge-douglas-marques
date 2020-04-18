@@ -17,25 +17,53 @@ class LoginViewModel constructor(
     val navigationObserver = MutableLiveData<NavDirections?>()
 
     fun login(password: String) = viewModelScope.launch {
-        try {
-            // set loading state to true, it means the screen will display the loading widget
-            loadingObserver.value = true
-            //  call the repository to login
-            val loginSuccessful = repository.login(password)
-            // if login is successful navigate to reward screen
-            if (loginSuccessful) {
-                navigationObserver.value =
-                    LoginFragmentDirections.actionLoginFragmentToRewardFragment()
-            } else {
-                errorObserver.value = R.string.invalid_otp_error
+        // set loading state to true, it means the screen will display the loading widget
+        loadingObserver.value = true
+        if (isValidPassword(password)) {
+            try {
+                //  call the repository to login
+                if (repository.login(password)) {
+                    navigateToReward()
+                } else {
+                    showInvalidOtpError()
+                }
+            } catch (exception: Exception) {
+                showGenericError()
             }
-            // set loading state to false it means the UI will hide the loading widget
-            loadingObserver.value = false
-        } catch (exception: Exception) {
-            // set loading state to false it means the UI will hide the loading widget
-            loadingObserver.value = false
-            // set a generic error message if there is any error to retrieve properties
-            errorObserver.value = R.string.dialog_error_generic
+        } else {
+            showInvalidOtpSizeError()
         }
+
+    }
+
+    private fun isValidPassword(password: String): Boolean = password.length == 4
+
+    private fun navigateToReward() {
+        // set loading state to false it means the UI will hide the loading widget
+        loadingObserver.value = false
+        // navigate to reward screen
+        navigationObserver.value =
+            LoginFragmentDirections.actionLoginFragmentToRewardFragment()
+    }
+
+    private fun showInvalidOtpError() {
+        // set loading state to false it means the UI will hide the loading widget
+        loadingObserver.value = false
+        // show the invalid otp error
+        errorObserver.value = R.string.invalid_otp_error
+    }
+
+    private fun showGenericError() {
+        // set loading state to false it means the UI will hide the loading widget
+        loadingObserver.value = false
+        // set a generic error message if there is some error to login
+        errorObserver.value = R.string.dialog_error_generic
+    }
+
+    private fun showInvalidOtpSizeError() {
+        // set loading state to false it means the UI will hide the loading widget
+        loadingObserver.value = false
+        // show the invalid otp size error
+        errorObserver.value = R.string.invalid_size_otp_error
     }
 }
