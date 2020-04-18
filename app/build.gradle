@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 29
@@ -60,7 +61,7 @@ dependencies {
     def junitVersion = "2.1.0-beta01"
     def coroutinesVersion = "1.2.2"
     def lifecycleVersion = "2.2.0"
-    def navigationVersion = "2.2.0-rc03"
+    def navigationVersion = "2.2.2"
     def koinVersion = "2.0.1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

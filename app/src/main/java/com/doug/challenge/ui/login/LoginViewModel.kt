@@ -3,6 +3,7 @@ package com.doug.challenge.ui.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.doug.challenge.R
 import com.doug.challenge.repository.LoginRepository
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ class LoginViewModel constructor(
 
     val loadingObserver = MutableLiveData<Boolean>()
     val errorObserver = MutableLiveData(0)
+    val navigationObserver = MutableLiveData<NavDirections?>()
 
     fun login(password: String) = viewModelScope.launch {
         try {
@@ -22,9 +24,10 @@ class LoginViewModel constructor(
             val loginSuccessful = repository.login(password)
             // set loading state to false it means the UI will hide the loading widget
             loadingObserver.value = false
-            // if login is successful navigate to next screen
+            // if login is successful navigate to reward screen
             if (loginSuccessful) {
-                errorObserver.value = R.string.app_name
+                navigationObserver.value =
+                    LoginFragmentDirections.actionLoginFragmentToRewardFragment()
             } else {
                 errorObserver.value = R.string.invalid_otp_error
             }

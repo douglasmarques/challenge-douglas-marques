@@ -8,5 +8,13 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.doug.challenge.ui.login.LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_rewardFragment"
+            app:destination="@id/rewardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardFragment"
+        android:name="com.doug.challenge.ui.reward.RewardFragment"
+        android:label="RewardFragment" />
 </navigation>

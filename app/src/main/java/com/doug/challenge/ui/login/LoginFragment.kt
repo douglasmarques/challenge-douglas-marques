@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.doug.challenge.R
 import com.doug.challenge.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -36,31 +37,29 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun observeViewModel() {
-        observeLoadingState()
-        observerErrorState()
+        observeLoading()
+        observeErrors()
+        observeNavigation()
     }
 
     /**
      * observe if the view model emits changes to the loading state
      */
-    private fun observeLoadingState() {
+    private fun observeLoading() {
         viewModel.loadingObserver.observe(viewLifecycleOwner, Observer { isLoading ->
-            // show the refreshing widget
-//            if (isLoading) {
-//                if (!swipeRefreshLayout.isRefreshing) {
-//                    swipeRefreshLayout.isRefreshing = true
-//                }
-//            } else {
-//                // hide the refreshing widget
-//                swipeRefreshLayout.isRefreshing = false
-//            }
+            if (isLoading) {
+                // TODO: show the refreshing widget
+                viewModel.loadingObserver.value = false
+            } else {
+                // hide the refreshing widget
+            }
         })
     }
 
     /**
      * observe if the view model pushes any error messages
      */
-    private fun observerErrorState() {
+    private fun observeErrors() {
         viewModel.errorObserver.observe(viewLifecycleOwner, Observer { errorResource ->
             // show the error message
             if (errorResource > 0) {
@@ -68,5 +67,16 @@ class LoginFragment : BaseFragment() {
                 viewModel.errorObserver.value = 0
             }
         })
+    }
+
+    private fun observeNavigation() {
+        viewModel.navigationObserver.observe(viewLifecycleOwner, Observer { directions ->
+            directions?.let {
+//                    hideKeyboard()
+                findNavController().navigate(directions)
+                viewModel.navigationObserver.value = null
+            }
+        }
+        )
     }
 }
