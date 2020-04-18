@@ -7,6 +7,10 @@
     <string name="dialog_error_generic">Sorry something went wrong please try again</string>
 
     <!--Login -->
-    <string name="enter_otp_text">Please enter your OTP.</string>
+    <string name="enter_otp_text">Please enter your OTP</string>
     <string name="invalid_otp_error">The OTP is invalid, please check if the information is correct.</string>
+    <string name="submit_content_description">Submit</string>
+
+    <!--Reward -->
+    <string name="reward_title">Reward</string>
 </resources>

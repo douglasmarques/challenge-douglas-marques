@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView.OnEditorActionListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.doug.challenge.R
 import com.doug.challenge.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class LoginFragment : BaseFragment() {
 
@@ -26,13 +29,28 @@ class LoginFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setUpButton()
+        setUpSubmitButton()
+        setUpPasswordOtpView()
         observeViewModel()
     }
 
-    private fun setUpButton() {
+    private fun setUpSubmitButton() {
         submitButton.setOnClickListener {
-            viewModel.login(passwordTextView.text.toString())
+            viewModel.login(passwordOtpView.text.toString())
+        }
+    }
+
+    private fun setUpPasswordOtpView() {
+        passwordOtpView.setOnEditorActionListener(OnEditorActionListener { view, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.login(view.text.toString())
+                return@OnEditorActionListener true
+            }
+            false
+        })
+
+        submitButton.setOnClickListener {
+            viewModel.login(passwordOtpView.text.toString())
         }
     }
 
@@ -48,10 +66,11 @@ class LoginFragment : BaseFragment() {
     private fun observeLoading() {
         viewModel.loadingObserver.observe(viewLifecycleOwner, Observer { isLoading ->
             if (isLoading) {
-                // TODO: show the refreshing widget
-                viewModel.loadingObserver.value = false
+                submitButton.visibility = View.INVISIBLE
+                progressBar.visibility = View.VISIBLE
             } else {
-                // hide the refreshing widget
+                progressBar.visibility = View.GONE
+                submitButton.visibility = View.VISIBLE
             }
         })
     }
@@ -69,14 +88,15 @@ class LoginFragment : BaseFragment() {
         })
     }
 
+    /**
+     * observe if the view model requires any navigation
+     */
     private fun observeNavigation() {
         viewModel.navigationObserver.observe(viewLifecycleOwner, Observer { directions ->
             directions?.let {
-//                    hideKeyboard()
                 findNavController().navigate(directions)
                 viewModel.navigationObserver.value = null
             }
-        }
-        )
+        })
     }
 }

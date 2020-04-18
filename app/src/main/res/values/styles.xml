@@ -9,6 +9,8 @@
 
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
+
+        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
     </style>
 
     <style name="Alert" parent="Theme.AppCompat.Light.Dialog.Alert">

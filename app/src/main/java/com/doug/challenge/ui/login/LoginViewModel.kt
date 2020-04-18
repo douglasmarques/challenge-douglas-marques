@@ -22,8 +22,6 @@ class LoginViewModel constructor(
             loadingObserver.value = true
             //  call the repository to login
             val loginSuccessful = repository.login(password)
-            // set loading state to false it means the UI will hide the loading widget
-            loadingObserver.value = false
             // if login is successful navigate to reward screen
             if (loginSuccessful) {
                 navigationObserver.value =
@@ -31,6 +29,8 @@ class LoginViewModel constructor(
             } else {
                 errorObserver.value = R.string.invalid_otp_error
             }
+            // set loading state to false it means the UI will hide the loading widget
+            loadingObserver.value = false
         } catch (exception: Exception) {
             // set loading state to false it means the UI will hide the loading widget
             loadingObserver.value = false

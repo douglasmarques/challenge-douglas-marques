@@ -4,29 +4,70 @@
     android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue">
+    android:background="@color/black_light">
 
     <TextView
         android:id="@+id/labelTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/huge"
         android:gravity="center_horizontal"
+        android:paddingStart="@dimen/large"
+        android:paddingTop="@dimen/huge"
+        android:paddingEnd="@dimen/large"
+        android:paddingBottom="@dimen/huge"
         android:text="@string/enter_otp_text"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordTextView"
-        android:layout_width="match_parent"
+    <com.mukesh.OtpView
+        android:id="@+id/passwordOtpView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="numberPassword"
+        android:itemBackground="@color/colorPrimary"
+        android:paddingStart="@dimen/medium"
+        android:paddingTop="@dimen/huge"
+        android:paddingEnd="@dimen/large"
+        android:textColor="@color/green"
+        app:itemCount="4"
+        app:itemSpacing="@dimen/medium"
+        app:layout_constraintEnd_toStartOf="@+id/submitButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/labelTextView"
+        app:lineColor="@color/green"
+        app:viewType="line" />
 
-    <Button
+    <ImageButton
         android:id="@+id/submitButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
+        android:background="@color/black_light"
+        android:contentDescription="@string/submit_content_description"
+        android:paddingStart="@dimen/large"
+        android:paddingEnd="@dimen/large"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordOtpView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/passwordOtpView" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black_light"
+        android:paddingStart="@dimen/large"
+        android:paddingEnd="@dimen/large"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordOtpView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/passwordOtpView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

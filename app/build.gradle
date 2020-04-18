@@ -63,6 +63,7 @@ dependencies {
     def lifecycleVersion = "2.2.0"
     def navigationVersion = "2.2.2"
     def koinVersion = "2.0.1"
+    def otpViewVersion = "2.1.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
@@ -104,6 +105,8 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    implementation "com.github.mukeshsolanki:android-otpview-pinview:$otpViewVersion"
 
     // Test libraries
     testImplementation "junit:junit:$junitVersion"

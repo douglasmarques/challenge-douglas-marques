@@ -16,5 +16,5 @@
     <fragment
         android:id="@+id/rewardFragment"
         android:name="com.doug.challenge.ui.reward.RewardFragment"
-        android:label="RewardFragment" />
+        android:label="@string/reward_title" />
 </navigation>
