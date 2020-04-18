@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Challenge - Douglas Marques</string>
+    <string name="app_name">Doug - Challenge</string>
 
     <!--Dialogs -->
     <string name="dialog_error_title">Error</string>
