@@ -21,4 +21,10 @@ class MainActivity : AppCompatActivity() {
         toolbar.setupWithNavController(navController, configuration)
         setSupportActionBar(toolbar)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.fragmentNavHost)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }

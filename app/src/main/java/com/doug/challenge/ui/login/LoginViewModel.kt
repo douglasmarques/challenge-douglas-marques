@@ -25,7 +25,7 @@ class LoginViewModel constructor(
                 if (repository.login(password)) {
                     navigateToReward()
                 } else {
-                    showInvalidOtpError()
+                    showIncorrectOtpError()
                 }
             } catch (exception: Exception) {
                 showGenericError()
@@ -38,32 +38,36 @@ class LoginViewModel constructor(
 
     private fun isValidPassword(password: String): Boolean = password.length == 4
 
+    /**
+     * Hide the loading spinner and navigate to reward screen.
+     */
     private fun navigateToReward() {
-        // set loading state to false it means the UI will hide the loading widget
         loadingObserver.value = false
-        // navigate to reward screen
         navigationObserver.value =
             LoginFragmentDirections.actionLoginFragmentToRewardFragment()
     }
 
-    private fun showInvalidOtpError() {
-        // set loading state to false it means the UI will hide the loading widget
+    /**
+     * Hide the loading spinner and show the incorrect OTP error.
+     */
+    private fun showIncorrectOtpError() {
         loadingObserver.value = false
-        // show the invalid otp error
-        errorObserver.value = R.string.invalid_otp_error
+        errorObserver.value = R.string.incorrect_otp_error
     }
 
+    /**
+     * Hide the loading spinner and show the generic error.
+     */
     private fun showGenericError() {
-        // set loading state to false it means the UI will hide the loading widget
         loadingObserver.value = false
-        // set a generic error message if there is some error to login
         errorObserver.value = R.string.dialog_error_generic
     }
 
+    /**
+     * Hide the loading spinner and show the invalid OTP size error.
+     */
     private fun showInvalidOtpSizeError() {
-        // set loading state to false it means the UI will hide the loading widget
         loadingObserver.value = false
-        // show the invalid otp size error
         errorObserver.value = R.string.invalid_size_otp_error
     }
 }
