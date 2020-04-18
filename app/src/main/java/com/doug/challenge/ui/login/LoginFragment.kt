@@ -98,6 +98,7 @@ class LoginFragment : BaseFragment() {
                 findNavController().navigate(directions)
                 viewModel.navigationObserver.value = null
                 passwordOtpView.text = null
+                hideKeyboard()
             }
         })
     }

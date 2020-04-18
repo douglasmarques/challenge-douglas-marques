@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.doug.challenge.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         // the navigation graph (@navigation/navigation_graph)
         val navController = findNavController(R.id.fragmentNavHost)
         val configuration = AppBarConfiguration(navController.graph)
-        toolbar.setupWithNavController(navController, configuration)
         setSupportActionBar(toolbar)
+        setupActionBarWithNavController(navController, configuration)
     }
 
     override fun onSupportNavigateUp(): Boolean {

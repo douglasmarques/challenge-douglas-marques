@@ -1,12 +1,14 @@
 package com.doug.challenge.ui
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.doug.challenge.ui.dialogs.ErrorDialog
 
 /**
- * Base fragment that holds some common logic to display errors
+ * Base fragment that holds some common logic to display errors and hide the Keyboard
  */
 abstract class BaseFragment : Fragment() {
 
@@ -35,4 +37,17 @@ abstract class BaseFragment : Fragment() {
     protected fun showActionBar() {
         (activity as? AppCompatActivity)?.supportActionBar?.show()
     }
+
+    protected fun hideKeyboard() {
+        val view = activity?.currentFocus
+        if (view != null) {
+            val inputManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            inputManager?.hideSoftInputFromWindow(
+                view.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
+
 }
