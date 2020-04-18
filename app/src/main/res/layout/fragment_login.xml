@@ -41,7 +41,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTextView"
         app:lineColor="@color/green"
-        app:viewType="line" />
+        app:viewType="line">
+
+        <requestFocus />
+    </com.mukesh.OtpView>
 
     <ImageButton
         android:id="@+id/submitButton"
