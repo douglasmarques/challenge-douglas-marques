@@ -68,7 +68,7 @@ dependencies {
     def mockitoVersion = "2.27.0"
     def mockitoKotlinVersion = "2.1.0"
     def coreTestingVersion = "2.1.0-beta01"
-    def junitVersion = "2.1.0-beta01"
+    def junitVersion = "4.12"
     def coroutinesVersion = "1.2.2"
     def lifecycleVersion = "2.2.0"
     def navigationVersion = "2.2.2"
